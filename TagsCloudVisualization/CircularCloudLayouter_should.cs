@@ -1,6 +1,5 @@
 ﻿using System.Drawing;
 using NUnit.Framework;
-using NUnit.Framework.Interfaces;
 using FluentAssertions;
 
 
@@ -18,11 +17,25 @@ namespace TagsCloudVisualization
         }
 
         [Test]
-        public void PutNextRectangle_CenterPut_AddedFirstRectangle()
+        public void PutNextRectangle_BeOnCenter_AfterAddedFirstRectangle()
         {
             var resultRectangle = cloudLayouter.PutNextRectangle(new Size(5, 5));
             resultRectangle.Location.ShouldBeEquivalentTo(cloudLayouter.Center);
         }
 
+        [Test]
+        public void PutNextRectangle_BeNotIntersection_AfterAddedTwoRectangles()
+        {
+            var resultRectangle = cloudLayouter.PutNextRectangle(new Size(5, 5));
+            cloudLayouter.PutNextRectangle(new Size(5, 5));
+
+            resultRectangle.Location.ShouldBeEquivalentTo(cloudLayouter.Center);
+        }
+
+        [TearDown]
+        public void Draw_CloudLayouter()
+        {
+            Drawer.DrawCloudLayouter(cloudLayouter);
+        }
     }
 }
