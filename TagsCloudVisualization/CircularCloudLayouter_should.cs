@@ -13,14 +13,14 @@ namespace TagsCloudVisualization
         [SetUp]
         public void SetUp()
         {
-            cloudLayouter = new CircularCloudLayouter(new Point(50, 50));
+            cloudLayouter = new CircularCloudLayouter(new Point(1024, 1024));
         }
 
         [Test]
         public void PutNextRectangle_BeOnCenter_AfterAddedFirstRectangle()
         {
             var resultRectangle = cloudLayouter.PutNextRectangle(new Size(5, 5));
-            resultRectangle.Location.ShouldBeEquivalentTo(cloudLayouter.Center);
+            resultRectangle.Location.ShouldBeEquivalentTo(cloudLayouter.LauoutCenter - new Size(5, 5));
         }
 
         [Test]
@@ -29,7 +29,7 @@ namespace TagsCloudVisualization
             var resultRectangle = cloudLayouter.PutNextRectangle(new Size(5, 5));
             cloudLayouter.PutNextRectangle(new Size(5, 5));
 
-            resultRectangle.Location.ShouldBeEquivalentTo(cloudLayouter.Center);
+            resultRectangle.Location.ShouldBeEquivalentTo(cloudLayouter.LauoutCenter);
         }
 
         [TearDown]
