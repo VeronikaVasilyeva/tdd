@@ -18,19 +18,18 @@ namespace TagsCloudVisualization
             c.PutNextRectangle(new Size(200, 300));
             c.PutNextRectangle(new Size(300, 100));
 
-            DrawCloudLayouter(c);
+            DrawRectanglesWithCenterIn(c.LauoutCenter, c.Rectangles);
         }
 
-        public static void DrawCloudLayouter(CircularCloudLayouter cloudLayouter)
+        public static void DrawRectanglesWithCenterIn(Point center, List<Rectangle> rectangles)
         {
-            var center = cloudLayouter.LauoutCenter;
             var image = new Bitmap(center.X * 2, center.Y * 2);
             var myPen = new Pen(Color.Red);
             
             using (var g = Graphics.FromImage(image))
             {
                 CreateCentralPoint(g, center);
-                cloudLayouter.Rectangles.ForEach(r => g.DrawRectangle(myPen, r));
+                rectangles.ForEach(r => g.DrawRectangle(myPen, r));
             }
 
             var fileName = DateTime.Now.GetHashCode();

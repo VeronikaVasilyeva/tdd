@@ -32,7 +32,7 @@ namespace BowlingGame
     }
 
     public class ReportingTest<TTestClass>
-	{
+    {
         private static readonly string resultsFileName = typeof(TTestClass).Name + ".json";
         private static string resultsFile;
         private static List<TestCaseStatus> tests;
@@ -62,6 +62,7 @@ namespace BowlingGame
                 testStatus.Succeeded = succeeded;
             }
             else
+            {
                 tests.Add(new TestCaseStatus
                 {
                     FirstRunTime = DateTime.Now,
@@ -70,6 +71,7 @@ namespace BowlingGame
                     TestMethod = test.MethodName,
                     Succeeded = succeeded
                 });
+            }
         }
 
         private static void SaveResults(List<TestCaseStatus> tests)
@@ -106,9 +108,7 @@ namespace BowlingGame
             var names = typeof(TTestClass).GetField("Names").GetValue(null);
             Console.WriteLine(names);
             foreach (var kv in tests)
-            {
                 Console.WriteLine(kv.TestName);
-            }
 
             using (var client = Firebase.CreateClient())
             {
@@ -120,10 +120,10 @@ namespace BowlingGame
 
     public class TestCaseStatus
     {
-        public string TestMethod;
-        public string TestName;
         public DateTime FirstRunTime;
         public DateTime LastRunTime;
         public bool Succeeded;
+        public string TestMethod;
+        public string TestName;
     }
 }

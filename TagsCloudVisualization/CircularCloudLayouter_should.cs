@@ -34,7 +34,7 @@ namespace TagsCloudVisualization
         [Test]
         public void PutNextRectangle_BeNotIntersection_AfterAddedTwoRectangles()
         {
-            var rectangles = new List<Size>() { new Size(20, 30), new Size(500, 500) };
+            var rectangles = new List<Size>{ new Size(20, 30), new Size(500, 500) };
 
             rectangles.ForEach(r => cloudLayouter.PutNextRectangle(r));
 
@@ -44,7 +44,7 @@ namespace TagsCloudVisualization
         [TearDown]
         public void Draw_CloudLayouter()
         {
-            Drawer.DrawCloudLayouter(cloudLayouter);
+            Drawer.DrawRectanglesWithCenterIn(cloudLayouter.LauoutCenter, cloudLayouter.Rectangles);
         }
     }
 }

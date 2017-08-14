@@ -25,13 +25,10 @@ namespace TagsCloudVisualization
 
         public static bool IsNotIntersection(this Rectangle rect1, Rectangle rect2)
         {
-            if (rect1.Left >= rect2.Right ||
-                rect1.Right <= rect2.Left ||
-                rect1.Top >= rect2.Bottom ||
-                rect1.Bottom <= rect2.Top)
-                return true;
-
-            return false;
+            return rect1.Left >= rect2.Right ||
+                   rect1.Right <= rect2.Left ||
+                   rect1.Top >= rect2.Bottom ||
+                   rect1.Bottom <= rect2.Top;
         }
     }
 }
