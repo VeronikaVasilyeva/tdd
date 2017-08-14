@@ -15,7 +15,13 @@ namespace TagsCloudVisualization
             return 0;
         }
 
+        public static bool IsNotIntersectionLastRectangleWithAll(List<Rectangle> rectangles)
+        {
+            var lastAddedRectangle = rectangles.LastOrDefault();
+            if (lastAddedRectangle == null) throw new ArgumentException();
 
+            return rectangles.Take(rectangles.Count - 2).All(rectangle => lastAddedRectangle.IsNotIntersection(rectangle));
+        }
 
         public static bool IsNotIntersection(this Rectangle rect1, Rectangle rect2)
         {
