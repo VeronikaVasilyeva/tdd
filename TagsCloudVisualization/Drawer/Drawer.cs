@@ -9,22 +9,31 @@ namespace TagsCloudVisualization
 {
     static class Drawer
     {
-        public static void Main(string[] args)
-        {
-            DrawCloudLayouter(new CircularCloudLayouter(new Point(5,5)));
-        }
+        private static Action<Graphics, Point> CreateCentralPoint = (g, p) => g.FillEllipse(new SolidBrush(Color.Beige), p.X - 3, p.Y - 3, 6, 6);
+
+        //public static void Main(string[] args)
+        //{
+        //    var c = new CircularCloudLayouter(new Point(500, 500));
+        //    c.PutNextRectangle(new Size(20, 20));
+        //    c.PutNextRectangle(new Size(200, 300));
+        //    c.PutNextRectangle(new Size(300, 100));
+            
+        //    DrawCloudLayouter(c);
+        //}
 
         public static void DrawCloudLayouter(CircularCloudLayouter cloudLayouter)
         {
-            var image = new Bitmap(1024, 1024);
-
+            var center = cloudLayouter.LauoutCenter;
+            var image = new Bitmap(center.X * 2, center.Y * 2);
+            var myPen = new Pen(Color.Red);
+            
             using (var g = Graphics.FromImage(image))
             {
-                var myPen = new Pen(Color.Red);
-                g.DrawRectangle(myPen, new Rectangle(0, 0, 200, 300));
+                CreateCentralPoint(g, center);
+                cloudLayouter.Rectangles.ForEach(r => g.DrawRectangle(myPen, r));
             }
 
-            var fileName = DateTime.Now.Millisecond;
+            var fileName = DateTime.Now.GetHashCode();
             image.Save($@"D:\Crash-course\TagsCloudVisualization\TagsCloudVisualization\images\{fileName}.bmp");
         }
 
