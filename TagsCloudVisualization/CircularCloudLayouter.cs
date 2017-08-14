@@ -1,17 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TagsCloudVisualization
 {
     class CircularCloudLayouter
     {
         public Point Center;
-        private List<Rectangle> Rectangles = new List<Rectangle>();
+        public List<Rectangle> Rectangles = new List<Rectangle>();
 
         public CircularCloudLayouter(Point center)
         {
@@ -24,5 +21,7 @@ namespace TagsCloudVisualization
 
             return new Rectangle();
         }
+
+
     }
 }
