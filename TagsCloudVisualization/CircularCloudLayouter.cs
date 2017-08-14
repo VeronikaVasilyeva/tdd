@@ -26,8 +26,10 @@ namespace TagsCloudVisualization
             {
                 location = new Point(LauoutCenter.X - rectangleSize.Width / 2, LauoutCenter.Y - rectangleSize.Height / 2);
             }
-            Rectangles.Add(new Rectangle(location, rectangleSize));
-            return new Rectangle();
+
+            var rectangle = new Rectangle(location, rectangleSize);
+            Rectangles.Add(rectangle);
+            return rectangle;
         }
 
 
