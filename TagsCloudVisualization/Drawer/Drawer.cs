@@ -4,7 +4,7 @@ using System.Drawing;
 
 namespace TagsCloudVisualization.Drawer
 {
-    internal static class Drawer
+    public static class Drawer
     {
         private static readonly Action<Graphics, Point> CreateCentralPoint =
             (g, p) => g.FillEllipse(new SolidBrush(Color.Beige), p.X - 3, p.Y - 3, 6, 6);

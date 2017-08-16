@@ -3,7 +3,7 @@ using System.Drawing;
 using System.Linq;
 using TagsCloudVisualization.Extensions;
 
-namespace TagsCloudVisualization.Helper
+namespace TagsCloudVisualization.Helpers
 {
     public static class CloudLayouterMetricsHelper
     {
@@ -29,20 +29,7 @@ namespace TagsCloudVisualization.Helper
 
         public static int GetRadiusCircumscribingCircleFor(List<Rectangle> rectangles, Point center)
         {
-            return rectangles.Max(r => center.MaxDistTo(r));
-        }
-
-        private static int MaxDistTo(this Point center, Rectangle rect)
-        {
-            var vertices = new List<Point>
-            {
-                rect.Location,
-                new Point(rect.Left, rect.Bottom),
-                new Point(rect.Right, rect.Bottom),
-                new Point(rect.Right, rect.Top)
-            };
-
-            return vertices.Select(v => (int) center.DistTo(v)).Max();
+            return rectangles.Max(r => r.MaxDistTo(center));
         }
 
         public static bool IsCircleFormForCloudLayouter(CircularCloudLayouter cloudLayouter)
