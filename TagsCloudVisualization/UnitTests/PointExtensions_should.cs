@@ -30,7 +30,7 @@ namespace TagsCloudVisualization.UnitTests
         }
 
         [TestCaseSource(nameof(Points))]
-        public void DistTo_IsEquivalentDist(Point p1, Point p2)
+        public void DistTo_BeEquivalent(Point p1, Point p2)
         {
             p1.DistTo(p2).Should().Be(p2.DistTo(p1));
         }
