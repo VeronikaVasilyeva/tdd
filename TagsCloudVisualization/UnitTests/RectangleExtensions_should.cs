@@ -102,12 +102,6 @@ namespace TagsCloudVisualization.UnitTests
 
         #region MaxDistTo
         
-        private static object[] CenterWithRectangle =
-        {
-            new object[] { new Point(10, 10), new Rectangle(5, 5, 4, 2) }
-        };
-
-       // [TestCaseSource(nameof(CenterWithRectangle))]
        [Test]
         public void MaxDistTo_HaveMaxDistance()
         {
