@@ -6,32 +6,22 @@ namespace TagsCloudVisualization.Drawer
 {
     public static class Drawer
     {
-        private static readonly Action<Graphics, Point> CreateCentralPoint =
-            (g, p) => g.FillEllipse(new SolidBrush(Color.Beige), p.X - 3, p.Y - 3, 6, 6);
+        private static readonly Action<Graphics, Point> CreateCentralPoint = (g, p) => g.FillEllipse(new SolidBrush(Color.Beige), p.X - 3, p.Y - 3, 6, 6);
 
-        public static void Main(string[] args)
+        public static void Draw(Size imageSize, List<Rectangle> rectangles)
         {
-            var c = new CircularCloudLayouter(new Point(500, 500));
-            c.PutNextRectangle(new Size(20, 20));
-            c.PutNextRectangle(new Size(200, 300));
-            c.PutNextRectangle(new Size(300, 100));
-
-            DrawRectanglesWithCenterIn(c.LauoutCenter, c.Rectangles);
-        }
-
-        public static void DrawRectanglesWithCenterIn(Point center, List<Rectangle> rectangles)
-        {
-            var image = new Bitmap(center.X * 2, center.Y * 2);
+            var imageBitmap = new Bitmap(imageSize.Width, imageSize.Height);
             var myPen = new Pen(Color.Red);
 
-            using (var g = Graphics.FromImage(image))
+            using (var g = Graphics.FromImage(imageBitmap))
             {
-                CreateCentralPoint(g, center);
+                var centralPoint = new Point(imageSize.Width / 2, imageSize.Height / 2);
+                CreateCentralPoint(g, centralPoint);
                 rectangles.ForEach(r => g.DrawRectangle(myPen, r));
             }
 
-            var fileName = DateTime.Now.GetHashCode();
-            image.Save($@"D:\Crash-course\TagsCloudVisualization\TagsCloudVisualization\images\{fileName}.bmp");
+            var fileName = DateTime.Now.ToString("yyyyMMddhhmmss");
+            imageBitmap.Save($@"D:\Crash-course\TagsCloudVisualization\TagsCloudVisualization\images\{fileName}.bmp");
         }
     }
 }

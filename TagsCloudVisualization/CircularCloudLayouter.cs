@@ -18,11 +18,13 @@ namespace TagsCloudVisualization
             Point location;
 
             if (Rectangles.Count == 0)
-            { location = new Point(LauoutCenter.X - rectangleSize.Width / 2,
+            {
+                location = new Point(LauoutCenter.X - rectangleSize.Width / 2,
                     LauoutCenter.Y - rectangleSize.Height / 2);
             }
             else
-            { location = new Point(LauoutCenter.X - rectangleSize.Width / 2,
+            {
+                location = new Point(LauoutCenter.X - rectangleSize.Width / 2,
                     LauoutCenter.Y - rectangleSize.Height / 2);
             }
 

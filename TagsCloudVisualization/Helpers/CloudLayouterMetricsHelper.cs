@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using TagsCloudVisualization.Extensions;
@@ -34,11 +35,11 @@ namespace TagsCloudVisualization.Helpers
 
         public static bool IsCircleFormForCloudLayouter(CircularCloudLayouter cloudLayouter)
         {
-            var averageRadius = cloudLayouter.Rectangles.Select(r => cloudLayouter.LauoutCenter.MaxDistTo(r)).Average();
-            var maxRadius = cloudLayouter.Rectangles.Select(r => cloudLayouter.LauoutCenter.MaxDistTo(r)).Max();
+            throw new NotSupportedException();
+            //var averageRadius = cloudLayouter.Rectangles.Select(r => (int)cloudLayouter.LauoutCenter.MaxDistTo(r)).Average();
+            //var maxRadius = cloudLayouter.Rectangles.Select(r => (int)cloudLayouter.LauoutCenter.MaxDistTo(r)).Max();
 
-            return maxRadius <= averageRadius * 2;
+            //return maxRadius <= averageRadius * 2;
         }
-
     }
 }
