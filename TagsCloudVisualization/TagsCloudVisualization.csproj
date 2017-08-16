@@ -53,13 +53,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CircularCloudLayouter.cs" />
-    <Compile Include="CircularCloudLayouter_should.cs" />
-    <Compile Include="CloudVisualizationMetricsHelper_should.cs" />
+    <Compile Include="UnitTests\CircularCloudLayouter_should.cs" />
+    <Compile Include="UnitTests\CloudVisualizationMetricsHelper_should.cs" />
     <Compile Include="Drawer\Drawer.cs" />
-    <Compile Include="Helper\CloudVisualizationMetricsHelper.cs" />
+    <Compile Include="Helpers\CloudLayouterMetricsHelper.cs" />
+    <Compile Include="Extensions\PointExtentions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Helper\RectangleHelper.cs" />
-    <Compile Include="RectangleHelper_should.cs" />
+    <Compile Include="Extensions\RectangleExtentions.cs" />
+    <Compile Include="UnitTests\PointExtensions_should.cs" />
+    <Compile Include="UnitTests\RectangleExtensions_should.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

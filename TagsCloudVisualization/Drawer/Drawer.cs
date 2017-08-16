@@ -1,15 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace TagsCloudVisualization
+namespace TagsCloudVisualization.Drawer
 {
-    static class Drawer
+    internal static class Drawer
     {
-        private static Action<Graphics, Point> CreateCentralPoint = (g, p) => g.FillEllipse(new SolidBrush(Color.Beige), p.X - 3, p.Y - 3, 6, 6);
+        private static readonly Action<Graphics, Point> CreateCentralPoint =
+            (g, p) => g.FillEllipse(new SolidBrush(Color.Beige), p.X - 3, p.Y - 3, 6, 6);
 
         public static void Main(string[] args)
         {
@@ -25,7 +23,7 @@ namespace TagsCloudVisualization
         {
             var image = new Bitmap(center.X * 2, center.Y * 2);
             var myPen = new Pen(Color.Red);
-            
+
             using (var g = Graphics.FromImage(image))
             {
                 CreateCentralPoint(g, center);
@@ -35,6 +33,5 @@ namespace TagsCloudVisualization
             var fileName = DateTime.Now.GetHashCode();
             image.Save($@"D:\Crash-course\TagsCloudVisualization\TagsCloudVisualization\images\{fileName}.bmp");
         }
-
     }
 }
